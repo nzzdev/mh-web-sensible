@@ -1,0 +1,95 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "sensible@github:ginetta/sensible#legacy",
+        "scope": null,
+        "escapedName": "sensible",
+        "name": "sensible",
+        "rawSpec": "github:ginetta/sensible#legacy",
+        "spec": "github:ginetta/sensible#legacy",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:ginetta/sensible.git#legacy",
+          "sshUrl": "git+ssh://git@github.com/ginetta/sensible.git#legacy",
+          "httpsUrl": "git+https://github.com/ginetta/sensible.git#legacy",
+          "gitUrl": "git://github.com/ginetta/sensible.git#legacy",
+          "shortcut": "github:ginetta/sensible#legacy",
+          "directUrl": "https://raw.githubusercontent.com/ginetta/sensible/legacy/package.json"
+        }
+      },
+      "/home/rv/Source/Github/Phoenix/mh-web"
+    ]
+  ],
+  "_from": "ginetta/sensible#legacy",
+  "_id": "sensible@0.7.0",
+  "_inCache": true,
+  "_location": "/sensible",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "sensible@github:ginetta/sensible#legacy",
+    "scope": null,
+    "escapedName": "sensible",
+    "name": "sensible",
+    "rawSpec": "github:ginetta/sensible#legacy",
+    "spec": "github:ginetta/sensible#legacy",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:ginetta/sensible.git#legacy",
+      "sshUrl": "git+ssh://git@github.com/ginetta/sensible.git#legacy",
+      "httpsUrl": "git+https://github.com/ginetta/sensible.git#legacy",
+      "gitUrl": "git://github.com/ginetta/sensible.git#legacy",
+      "shortcut": "github:ginetta/sensible#legacy",
+      "directUrl": "https://raw.githubusercontent.com/ginetta/sensible/legacy/package.json"
+    }
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git://github.com/ginetta/sensible.git#641225ba77a164183de1fdc93ad34551182f987b",
+  "_shasum": "68af97e826478971d61849ebb4cc8d994ada09bb",
+  "_shrinkwrap": null,
+  "_spec": "sensible@github:ginetta/sensible#legacy",
+  "_where": "/home/rv/Source/Github/Phoenix/mh-web",
+  "author": {
+    "name": "meodai",
+    "email": "meodai@gmail.com",
+    "url": "https://github.com/meodai/"
+  },
+  "browser": "mediaQuery.js",
+  "bugs": {
+    "url": "https://github.com/meodai/sensible/issues"
+  },
+  "dependencies": {
+    "matchmedia-polyfill": "^0.3.0"
+  },
+  "description": "Maintains media-queries where they belong; in the SASS/SCSS and make them available with the same name space in JS without polluting the HTML",
+  "devDependencies": {},
+  "gitHead": "641225ba77a164183de1fdc93ad34551182f987b",
+  "homepage": "https://github.com/meodai/sensible#readme",
+  "keywords": [
+    "css",
+    "scss",
+    "responsive",
+    "responsiveness",
+    "mediaqueries",
+    "mediaquery",
+    "matchmedia"
+  ],
+  "license": "MIT",
+  "main": "mediaQuery.js",
+  "name": "sensible",
+  "optionalDependencies": {},
+  "readme": "<img id=\"logo\" align=\"right\" height=\"60\" src=\"http://imgh.us/noun_3400_cc.svg\">\n\n# sensible\n\n`Sensible` maintains your media-queries where they belong – in your SASS/SCSS. It also makes them available with the same name space in your JS without polluting your HTML. Check out the [demo](http://codepen.io/meodai/pen/kzwAy?editors=011).\n\n\n## Setup\n\nInstall with npm / Download or checkout from Github\n\n```shell\nnpm install sensible --save-dev\n```\n\nImport **_mediaqueries.scss** into your main scss/sass file.\n\n```sass\n@import 'mediaqueries';\n```\n\nOptionally include **mediaQuery.js** into your html file.\n\n```html\n<script src=\"mediaQuery.js\"></script>\n```\n\nAlternatively you can require mediaQuery.js with AMD.\n\n```javascript\nrequire(['lib/browser/mediaQuery'], function ( mediaQuery ) {})\n```\n\nNote: If you support IE9 and below, make sure you include [matchMedia.js](https://github.com/paulirish/matchMedia.js). If you use bower, this should already be in your ```bower_components``` folder as it is a sensible dependency.\n\n\n## Usage SCSS\n\n### Set up your breakpoints\nThe variable `$breakpoints` must be defined before you import mediaqueries.\n\n```sass\n$breakpoints: (\n    \"mobile\"              : \"only screen and (max-width:740px)\",\n    \"tablet\"              : \"only screen and (max-width:1050px)\",\n    \"desktop\"             : \"only screen and (min-width:1051px)\",\n    \"print\"               : \"print\"\n);\n```\n\n### Use the `breakpoint([device])` mixin\n\n```sass\nbody {\n    padding: 40px;\n}\n\n@include breakpoint(tablet) {\n    body {\n        padding: 20px;\n    }\n}\n\n.main {\n    margin: 40px;\n    @include breakpoint(mobile) {\n        margin: 20px;\n    }\n}\n```\n\n\n## Usage JS\nAll the defined breakpoints are available \n\n```javascript\n// mediaQuery.onEnter / onLeave (queryString,callback,callOnRegister)\n\nmediaQuery.onEnter('mobile tablet', function(query){\n  console.log(query);\n},true);\n\nmediaQuery.onLeave('mobile', function(query){\n  console.log(query);\n},true);\n\nif ( mediaQuery.is('mobile') ){\n  console.log(\"I'm a mobile\")\n}\n\nif ( mediaQuery.isNot('mobile') ){\n  console.log(\"I'm a not a mobile\")\n}\n```\n\n- - -\n\n## Grid !Optional\n`_grid.scss` can be included optionally. `@import 'grid';` and called like this: `@include sensibleGrid()`\n\nIt provides a lightweight, flexible and responsive grid based on sensible. The classes generated by it will look like this:\n\n```css\n.l-one-whole, .l-one-half, .l-one-quarter, .l-mobile-one-whole, .l-mobile-one-half, .l-mobile-one-quarter\n```\n\nWrap these elements in an element with the class `.l-grid`. Check out the [demo](http://codepen.io/meodai/pen/kzwAy?editors=011) .\n\nThe best thing is that they work like you'd expect them to:\n\n```css\n.l-one-whole { width: 100% }\n.l-one-half { width: 50% }\n//etc..\n```\n\nYou can use it with the classes listed here to fully configure it:\n\n```sass\n@include sensibleGrid (\n    $modern: false, // flex-box or inline-block (consider using autoprefixer if you use flex-box)\n    $gutter: 20px,\t// gutter between the col's\n    $gutterType: padding, //the gutter can be set as a padding or a margin (margin will use calc() doe)\n    $base-font-size: 16px, // base-font-size only used for inline-block layout\n    $slug: \"l-\", // slug used for generated classes\n    $pushClasses: false, // do you need .l-push-one-quarter etc. classes ?\n    $gridWidths: ( // grid withs and names\n        \"one-whole\"         : 100%,\n        \"one-half\"          : 50%,\n        \"one-quarter\"       : 25%,\n        \"three-quarters\"    : 75%,\n        \"one-third\"         : 33.333%,\n        \"two-thirds\"        : 66.666%,\n        \"one-fifth\"         : 20%,\n        \"four-fifths\"       : 80%,\n        \"one-sixth\"         : 16.666%,\n        \"five-sixths\"       : 83.333%\n    ),\n    $gridBreakpoints: \"mobile-portrait\" \"mobile\" \"not-mobile\" \"tablet-portrait\" \"tablet\" \"not-tablet\"  \"print\" // only include the breakpoints you use here to avoid a bloated css\n)\n```\n\n- - -\n\n## Responsive visibility !Optional\nThis mixin generates visibility classes in order to hide or show elements on specific breakpoints.\nSimilar to [Twitter Bootstrap](http://getbootstrap.com/2.3.2/scaffolding.html#responsive).\n`_responsive-visbility.scss` can be included optionally. `@import 'responsive-visibility';` and called like this: `@include sensibleGrid()`\n\n```sass\n@include responsive-visibility(\n  $visibility-breakpoints,\n  $overwrite: false,\n  $displaTypes: \"inline\" \"inline-block\"\n)\n```\n\n- `$visibility-breakpoints` is a list of you breakpoints you want to include, make sure to they have the same names as in `$breakpoints`\n\n- `$overwrite` by default the mixin generates classes that just show or hide any elements, it will be up to you to show or hide them initially. If `$overwrite` is set to true, the mixin will take care of the hiding for you.\n\nExample with `$overwrite:true` :\n\n```sass\n@include responsive-visibility(\"only-mobile\" \"only-tablet\", true);\n```\n\nWill generate:\n\n```css\n@media only screen and (max-width: 740px) {\n  .is-visible-only-mobile {\n    display: block !important;\n    visibility: visible;\n  }\n  .is-hidden-only-mobile, .is-visible-only-tablet {\n    display: none !important;\n    visibility: hidden;\n  }\n}\n@media only screen and (min-width: 741px) and (max-width: 1051px) {\n  .is-visible-only-tablet {\n    display: block !important;\n    visibility: visible;\n  }\n  .is-hidden-only-tablet, .is-visible-only-mobile {\n    display: none !important;\n    visibility: hidden;\n  }\n}\n```\n\nExample with `$overwrite:false`:\n\n```scss\n@include responsive-visibility(\"mobile\" \"tablet\" \"desktop\", false);\n```\n\nWill generate:\n\n```css\n@media only screen and (min-width: 1051px) {\n  .is-visible-only-desktop {\n    display: block !important;\n    visibility: visible;\n  }\n  .is-hidden-only-desktop, .is-visible-only-mobile, .is-visible-only-tablet {\n    display: none !important;\n    visibility: hidden;\n  }\n}\n//etc...\n```\n### Logo:\nlego by jon trillana from the Noun Project\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meodai/sensible.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.7.0"
+}
